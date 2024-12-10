@@ -1,4 +1,4 @@
-package Days;
+package days;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,8 +7,7 @@ import static java.lang.Math.abs;
 
 public class Day1 {
 
-    public int Part1(String input){
-
+    public int part1(String input){
         ArrayList<Integer> leftList = new ArrayList<>();
         ArrayList<Integer> rightList = new ArrayList<>();
 
@@ -26,7 +25,7 @@ public class Day1 {
         return sum;
     }
 
-    public int Part2(String input){
+    public int part2(String input){
         ArrayList<Integer> leftList = new ArrayList<>();
         ArrayList<Integer> rightList = new ArrayList<>();
 
