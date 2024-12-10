@@ -9,7 +9,7 @@ class Day4Test {
 
     @Test
     void part1Example() {
-        String input = InputReader.getInput("Day4Example");
+        String input = InputFileReader.getInput("Day4Example");
         int answer = new Day4().part1(input);
 
         assertEquals(18, answer);
@@ -17,7 +17,7 @@ class Day4Test {
 
     @Test
     void part1() {
-        String input = InputReader.getInput("Day4");
+        String input = InputFileReader.getInput("Day4");
         int answer = new Day4().part1(input);
 
         assertEquals(2454, answer);
@@ -25,7 +25,7 @@ class Day4Test {
 
     @Test
     void part2Example() {
-        String input = InputReader.getInput("Day4Example");
+        String input = InputFileReader.getInput("Day4Example");
         int answer = new Day4().part2(input);
 
         assertEquals(9, answer);
@@ -33,7 +33,7 @@ class Day4Test {
 
     @Test
     void part2() {
-        String input = InputReader.getInput("Day4");
+        String input = InputFileReader.getInput("Day4");
         int answer = new Day4().part2(input);
 
         assertEquals(1858, answer);

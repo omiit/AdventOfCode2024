@@ -5,9 +5,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class InputReader {
+public class InputFileReader {
 
-    private InputReader(){
+    private InputFileReader(){
 
     }
 
