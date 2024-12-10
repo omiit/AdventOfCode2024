@@ -2,18 +2,15 @@ package days;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static java.lang.Math.abs;
 
 public class Day2 {
 
     public int part1(String input){
-        ArrayList<String> lines = input.lines().collect(Collectors.toCollection(ArrayList::new));
-
         int safeLines = 0;
 
-        for(String line : lines){
+        for(String line : input.lines().toList()){
             if(isLineSafe(line.split(" "))){
                 safeLines++;
             }
@@ -23,11 +20,9 @@ public class Day2 {
     }
 
     public int part2(String input){
-        ArrayList<String> lines = input.lines().collect(Collectors.toCollection(ArrayList::new));
-
         int safeLines = 0;
 
-        for(String line : lines){
+        for(String line : input.lines().toList()){
 
             boolean oneOfTriesIsSafe = false;
             String[] numbers = line.split(" ");
@@ -50,8 +45,7 @@ public class Day2 {
         return safeLines;
     }
 
-    public boolean isLineSafe(String[] numbers) {
-
+    private boolean isLineSafe(String[] numbers) {
         boolean safe = true;
 
         boolean ascending = Integer.parseInt(numbers[0]) < Integer.parseInt(numbers[1]);
