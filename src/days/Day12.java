@@ -21,7 +21,6 @@ public class Day12 {
         int colIndex;
         char plantType;
         private ArrayList<Direction> fences;
-        ArrayList<Direction> neighbours;
         ArrayList<int[]> neighbourLocations;
 
         public Plot(int rowIndex, int colIndex, final PlantMap plantMap) {
@@ -29,9 +28,12 @@ public class Day12 {
             this.colIndex = colIndex;
             this.plantType = plantMap.getPlant(rowIndex, colIndex);
             this.fences = new ArrayList<>();
-            this.neighbours = new ArrayList<>();
             neighbourLocations = new ArrayList<>();
             setFencesAndNeighbours(plantMap);
+        }
+
+        public boolean hasFence(Direction direction) {
+            return fences.contains(direction);
         }
 
         private void setFencesAndNeighbours(final PlantMap plantMap) {
@@ -46,17 +48,12 @@ public class Day12 {
                 //Edge of map, set fence
                 fences.add(direction);
             } else if (plantMap.getPlant(rowIndexForDirection, colIndexForDirection) == plantType) {
-                //Same plant type, set neighbour
-                neighbours.add(direction);
+                //Same plant, add neighbour
                 neighbourLocations.add(new int[]{rowIndexForDirection, colIndexForDirection});
             } else {
                 //Must be another plant, add fence
                 fences.add(direction);
             }
-        }
-
-        public boolean hasFence(Direction direction) {
-            return fences.contains(direction);
         }
     }
 
@@ -79,20 +76,20 @@ public class Day12 {
             return isRowInBounds(rowIndex) && isColInBounds(colIndex);
         }
 
-        private boolean isRowInBounds(int rowIndex) {
-            return 0 <= rowIndex && rowIndex < rows;
-        }
-
-        private boolean isColInBounds(int colIndex) {
-            return 0 <= colIndex && colIndex < cols;
-        }
-
         public int getRows() {
             return rows;
         }
 
         public int getCols() {
             return cols;
+        }
+
+        private boolean isRowInBounds(int rowIndex) {
+            return 0 <= rowIndex && rowIndex < rows;
+        }
+
+        private boolean isColInBounds(int colIndex) {
+            return 0 <= colIndex && colIndex < cols;
         }
     }
 
@@ -179,11 +176,8 @@ public class Day12 {
     }
 
     public int part1(String input) {
-
         PlantMap plantMap = getMap(input);
-
         HashMap<Character, ArrayList<Region>> regionsPerPlant = getRegions(plantMap);
-
         int price = 0;
 
         for (ArrayList<Region> regions : regionsPerPlant.values()) {
@@ -195,10 +189,23 @@ public class Day12 {
         return price;
     }
 
+    public int part2(String input) {
+        PlantMap plantMap = getMap(input);
+        HashMap<Character, ArrayList<Region>> regionsPerPlant = getRegions(plantMap);
+        int price = 0;
+
+        for (ArrayList<Region> regions : regionsPerPlant.values()) {
+            for (Region region : regions) {
+                price += region.getFencePriceWithDiscount(plantMap);
+            }
+        }
+
+        return price;
+    }
+
     private HashMap<Character, ArrayList<Region>> getRegions(final PlantMap plantMap) {
 
         HashMap<Character, ArrayList<Region>> regionsPerPlant = new HashMap<>();
-
         int[][] visitedLocations = new int[plantMap.getRows()][plantMap.getCols()];
 
         for (int i = 0; i < plantMap.getRows(); i++) {
@@ -230,9 +237,7 @@ public class Day12 {
                             visitedLocations[neighbourRowIndex][neighbourColIndex] = 1;
                         }
                     }
-
                 }
-
                 addRegionToRegions(regionsPerPlant, region);
             }
         }
@@ -253,21 +258,4 @@ public class Day12 {
         char[][] grid = InputReader.getTwoDimensionalCharArray(input);
         return new PlantMap(grid);
     }
-
-    public int part2(String input) {
-        PlantMap plantMap = getMap(input);
-
-        HashMap<Character, ArrayList<Region>> regionsPerPlant = getRegions(plantMap);
-
-        int price = 0;
-
-        for (ArrayList<Region> regions : regionsPerPlant.values()) {
-            for (Region region : regions) {
-                price += region.getFencePriceWithDiscount(plantMap);
-            }
-        }
-
-        return price;
-    }
-
 }
