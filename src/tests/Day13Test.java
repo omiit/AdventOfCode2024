@@ -1,7 +1,7 @@
-package days;
+package tests;
 
+import days.Day13;
 import org.junit.jupiter.api.Test;
-import tests.InputFileReader;
 
 import static org.junit.jupiter.api.Assertions.*;
 

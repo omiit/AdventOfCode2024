@@ -114,7 +114,6 @@ public class Day13 {
                 tokens += claw.getUsedTokens();
             }
         }
-
         return tokens;
     }
 
@@ -128,44 +127,37 @@ public class Day13 {
                 tokens += claw.getUsedTokens();
             }
         }
-
         return tokens;
     }
 
-    public ArrayList<ClawMachine> getMachinesFromInput(String input, boolean prizeLocationPart2){
+    private ArrayList<ClawMachine> getMachinesFromInput(String input, boolean prizeLocationPart2) {
         ArrayList<ClawMachine> machines = new ArrayList<>();
 
-        long aXincrease = 0;
-        long aYincrease = 0;
-        long bXincrease = 0;
-        long bYincrease = 0;
-        long yPrize = 0;
-        long xPrize = 0;
+        Button buttonA = null;
+        Button buttonB = null;
 
-        for(String line : input.lines().toList()){
-            if(line.startsWith("Button A:")){
+        for (String line : input.lines().toList()) {
+            if (line.startsWith("Button A:")) {
                 String[] numbers = line.split("\\D+");
-                aXincrease = Long.parseLong(numbers[1]);
-                aYincrease = Long.parseLong(numbers[2]);
-            }
-            else if(line.startsWith("Button B:")){
+                long xIncrease = Long.parseLong(numbers[1]);
+                long yIncrease = Long.parseLong(numbers[2]);
+                buttonA = new Button(xIncrease, yIncrease, 3);
+            } else if (line.startsWith("Button B:")) {
                 String[] numbers = line.split("\\D+");
-                bXincrease = Long.parseLong(numbers[1]);
-                bYincrease = Long.parseLong(numbers[2]);
-            }
-            else if(line.startsWith("Prize:")){
+                long xIncrease = Long.parseLong(numbers[1]);
+                long yIncrease = Long.parseLong(numbers[2]);
+                buttonB = new Button(xIncrease, yIncrease, 1);
+            } else if (line.startsWith("Prize:")) {
                 String[] numbers = line.split("\\D+");
-                xPrize = Long.parseLong(numbers[1]);
-                yPrize = Long.parseLong(numbers[2]);
+                long prizeXLocation = Long.parseLong(numbers[1]);
+                long prizeYLocation = Long.parseLong(numbers[2]);
 
-                if(prizeLocationPart2){
-                    xPrize += 10000000000000L;
-                    yPrize += 10000000000000L;
+                if (prizeLocationPart2) {
+                    prizeXLocation += 10000000000000L;
+                    prizeYLocation += 10000000000000L;
                 }
 
-                Button a = new Button(aXincrease, aYincrease, 3);
-                Button b = new Button(bXincrease, bYincrease, 1);
-                ClawMachine clawmachine = new ClawMachine(xPrize, yPrize, a, b);
+                ClawMachine clawmachine = new ClawMachine(prizeXLocation, prizeYLocation, buttonA, buttonB);
                 machines.add(clawmachine);
             }
         }
