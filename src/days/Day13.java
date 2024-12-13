@@ -34,7 +34,7 @@ public class Day13 {
         }
 
         public boolean calculateSolution(){
-            solveWithSimultaneousEquations();
+            solvePressesForEquations();
 
             return clawAbovePrize();
         }
@@ -46,21 +46,15 @@ public class Day13 {
          * ax + by = e
          * cx + dy = f
          */
-        private void solveWithSimultaneousEquations() {
-            double a = buttonA.xPerPress;
-            double b = buttonB.xPerPress;
-            double c = buttonA.yPerPress;
-            double d = buttonB.yPerPress;
-            double e = prizeX;
-            double f = prizeY;
+        private void solvePressesForEquations() {
+            double determinant = ((buttonA.xPerPress) * (buttonB.yPerPress) - (buttonB.xPerPress) * (buttonA.yPerPress));
+            double pressesA = ((buttonB.yPerPress) * (prizeX) - (buttonB.xPerPress) * (prizeY)) / determinant;
+            double pressesB = ((buttonA.xPerPress) * (prizeY) - (buttonA.yPerPress) * (prizeX)) / determinant;
 
-            double det = ((a) * (d) - (b) * (c));
-            double x = ((d) * (e) - (b) * (f)) / det;
-            double y = ((a) * (f) - (c) * (e)) / det;
-
-            if((x % 1 == 0) && (y % 1 == 0)){
-                buttonA.setPresses((long)x);
-                buttonB.setPresses((long)y);
+            //If the presses are whole numbers, the prize can be reached
+            if((pressesA % 1 == 0) && (pressesB % 1 == 0)){
+                buttonA.setPresses((long)pressesA);
+                buttonB.setPresses((long)pressesB);
             }
         }
 
