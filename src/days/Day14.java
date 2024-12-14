@@ -10,6 +10,8 @@ import java.util.concurrent.TimeUnit;
 
 public class Day14 {
 
+    BathroomPainter bathroomPainter;
+
     public long part1(String input, int wide, int tall) {
 
         ArrayList<Robot> robots = getRobotsFromInput(input);
@@ -21,17 +23,23 @@ public class Day14 {
     }
 
     /**
-     * Visualizer for part2
+     * Visualizes part2
      */
     public static void main(String args[]) throws InterruptedException {
+
+        Day14 day14 = new Day14();
+        day14.part2();
+    }
+
+    private void part2() throws InterruptedException {
         String input = InputFileReader.getInput("Day14");
         ArrayList<Day14.Robot> robots = new Day14().getRobotsFromInput(input);
 
         Bathroom bathroom = new Bathroom(101, 103, robots);
         bathroom.passTimeSeconds(8050);
 
-        BathroomPainter painter = new BathroomPainter(bathroom, bathroom.length);
-        painter.runAnimationAndOutputTime();
+        BathroomPainter bathroomPainter = new BathroomPainter(bathroom, bathroom.length);
+        bathroomPainter.runAnimationAndOutputTime();
     }
 
     private static class Bathroom {
@@ -176,12 +184,12 @@ public class Day14 {
         return robots;
     }
 
-    private static class BathroomPainter extends JPanel {
+    private class BathroomPainter extends JPanel {
 
         static Bathroom bathroom;
-        JFrame frame;
-        public int secondsPerStep;
-        int scale = 10;
+        private JFrame frame;
+        private int secondsPerStep;
+        private int scale = 10;
 
         public BathroomPainter(Bathroom bathroom, int secondsPerStep) {
             BathroomPainter.bathroom = bathroom;
