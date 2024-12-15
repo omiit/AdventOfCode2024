@@ -1,15 +1,19 @@
 package days;
 
+import util.ArrayVisualizer;
 import util.InputReader;
 
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 public class Day15 {
 
     public long part1(String input) {
         WarehouseNormal warehouse = getWarehouse(input);
 
+
         warehouse.doAllRobotMoves();
+
 
         return warehouse.getSumOfGoodPositioningSystem();
     }
@@ -35,11 +39,18 @@ public class Day15 {
         }
 
         public void doAllRobotMoves() {
-            //printMap();
+
+            ArrayVisualizer arrayVisualizer = new ArrayVisualizer(warehouseMap);
+
             for (char move : robotMoves) {
-                //System.out.println("Do move: " + move);
                 doRobotMove(move);
-                //printMap();
+
+                try{
+                    TimeUnit.MILLISECONDS.sleep(5);
+                    arrayVisualizer.refresh();
+                } catch (Exception e){
+                    System.out.println("Could not draw warehouse");
+                }
             }
         }
 
