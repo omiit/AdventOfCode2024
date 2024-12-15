@@ -24,4 +24,7 @@ public class InputReader {
         return characterGrid;
     }
 
+    public static String[] splitOnEmptyLines(String input){
+        return input.split("(?m)^\\s*$");
+    }
 }
