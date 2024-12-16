@@ -11,9 +11,7 @@ public class Day15 {
     public long part1(String input) {
         WarehouseNormal warehouse = getWarehouse(input);
 
-
         warehouse.doAllRobotMoves();
-
 
         return warehouse.getSumOfGoodPositioningSystem();
     }
@@ -251,7 +249,7 @@ public class Day15 {
                 rightCanMove = !isWal(desiredXright, desiredY);
             }
 
-            if (leftCanMove & rightCanMove) {
+            if (leftCanMove && rightCanMove) {
                 if(doActualMove){
                     moveBoxVertical(desiredXleft, desiredXright, boxY, yDirection);
                 }
