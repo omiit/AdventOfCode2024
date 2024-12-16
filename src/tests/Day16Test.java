@@ -36,7 +36,7 @@ class Day16Test {
         String input = InputFileReader.getInput("Day16Example1");
         Long answer = new Day16().part2(input);
 
-        assertEquals(2L, answer);
+        assertEquals(45L, answer);
     }
 
     @Test
@@ -44,6 +44,14 @@ class Day16Test {
         String input = InputFileReader.getInput("Day16Example2");
         Long answer = new Day16().part2(input);
 
-        assertEquals(2L, answer);
+        assertEquals(64L, answer);
+    }
+
+    @Test
+    void part2() {
+        String input = InputFileReader.getInput("Day16");
+        Long answer = new Day16().part2(input);
+
+        assertEquals(0L, answer);
     }
 }
