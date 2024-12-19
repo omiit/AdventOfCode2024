@@ -28,4 +28,19 @@ class Day17Test {
         assertEquals("1,6,7,4,3,0,5,0,6", output);
     }
 
+    @Test
+    void part2Example() {
+        String output = new Day17().part1(117440, new int[]{0,3,5,4,3,0});
+
+        assertEquals("0,3,5,4,3,0", output);
+    }
+
+    @Test
+    void part2() {
+
+        String output = new Day17().part1(216148338630253L, new int[]{2,4,1,3,7,5,0,3,1,5,4,1,5,5,3,0});
+
+        assertEquals("2,4,1,3,7,5,0,3,1,5,4,1,5,5,3,0", output);
+    }
+
 }
