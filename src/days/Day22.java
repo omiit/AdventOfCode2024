@@ -97,7 +97,7 @@ public class Day22 {
         private void addToSequence(int difference){
             sequence.add(Integer.toString(difference));
             if(sequence.size() > 4) {
-                sequence.removeFirst();
+                sequence.remove(0);
             }
             if(sequence.size() == 4){
                 addSequenceIfFirstOccurence();

@@ -71,7 +71,7 @@ public class Day20 {
             pathsToExplore.add(startLocation);
 
             while (!pathsToExplore.isEmpty()) {
-                Location nextLocation = pathsToExplore.removeFirst();
+                Location nextLocation = pathsToExplore.remove(0);
                 pathsToExplore.addAll(getReachableLocations(nextLocation));
             }
         }
