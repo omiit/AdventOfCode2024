@@ -27,13 +27,11 @@ class Day24Test {
     void part2Example() {
         String input = InputFileReader.getInput("Day24Example2");
         long answer = new Day24().part1(input);
-
     }
 
     @Test
     void part2() {
         String input = InputFileReader.getInput("Day24Part2");
         long answer = new Day24().part1(input);
-
     }
 }
