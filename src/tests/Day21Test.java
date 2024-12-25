@@ -32,7 +32,7 @@ class Day21Test {
         //79583019497968 also wrong
         //197810519284786 too high
         //197972747156722 also wrong
-        assertEquals(197972747156722L, answer);
+        assertEquals(196910339808654L, answer);
     }
 
 

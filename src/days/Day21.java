@@ -1,7 +1,13 @@
 package days;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Queue;
+import java.util.stream.Collectors;
+
+import static java.lang.Math.abs;
 
 public class Day21 {
 
@@ -12,6 +18,7 @@ public class Day21 {
 
         for(String inputLine : input.lines().toList()){
             ArrayList<String> keypadMovesToExplore = new ArrayList<>();
+
             if(inputLine.equals("029A")){
                 keypadMovesToExplore.add("<A^A>^^AvvvA");
                 keypadMovesToExplore.add("<A^A^^>AvvvA");
@@ -30,6 +37,8 @@ public class Day21 {
             } else if(inputLine.equals("803A")){
                 keypadMovesToExplore.add("^^^<AvvvA^>AvA");
                 keypadMovesToExplore.add("<^^^AvvvA>^AvA");
+                keypadMovesToExplore.add("^^^<AvvvA>^AvA");
+                keypadMovesToExplore.add("<^^^AvvvA^>AvA");
             } else if(inputLine.equals("149A")){
                 keypadMovesToExplore.add("^<<A^A>>^AvvvA");
                 keypadMovesToExplore.add("^<<A^A^>>AvvvA");
@@ -45,16 +54,15 @@ public class Day21 {
                 keypadMovesToExplore.add("<^AvA^^^Avvv>A");
             }
 
+            //System.out.println("Moves for: " + inputLine + " are: " + keypadMovesToExplore.toString());
+
             long minimalMoves = Long.MAX_VALUE;
 
             for(String numpadMoves : keypadMovesToExplore){
-                //System.out.println("Checking the move string:  " + numpadMoves);
-
                 long movesCount = getMinimalMovesForMoveString(numpadMoves, robots);
                 if(movesCount < minimalMoves){
                     minimalMoves = movesCount;
                 }
-
             }
 
             System.out.println("Moves to " + inputLine + " count: " + minimalMoves);
@@ -80,7 +88,7 @@ public class Day21 {
 
     public long getMinimalMovesForMove(char previousMove, char nextMove, int robots){
 
-        String hash = previousMove + " - " + nextMove + " - " + robots;
+        String hash = "" + previousMove + nextMove + robots;
 
         if(moveCounts.containsKey(hash)){
             return moveCounts.get(hash);
@@ -202,12 +210,9 @@ public class Day21 {
                     possibleMoves.add("<A");
                 }
             }
-
             return possibleMoves;
         }
     }
-
-
 }
 
 
