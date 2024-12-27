@@ -1,16 +1,17 @@
 package days;
 
+import util.InputReader;
+
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Day4 {
     
     public int part1(String input){
         int answer = 0;
 
-        char[][] characterGrid = getTwoDimArrayFromString(input);
+        char[][] characterGrid = InputReader.getTwoDimensionalCharArray(input);
 
         ArrayList<String> horizontalLines = new ArrayList<>();
         ArrayList<String> verticalLines = new ArrayList<>();
@@ -114,7 +115,7 @@ public class Day4 {
 
     public int part2(String input){
         int answer = 0;
-        char[][] characterGrid = getTwoDimArrayFromString(input);
+        char[][] characterGrid = InputReader.getTwoDimensionalCharArray(input);
 
         int rows = characterGrid.length;
         int columns = characterGrid[0].length;
@@ -149,20 +150,5 @@ public class Day4 {
             return true;
 
         return (grid[rowIndex + 1][columnIndex - 1] == 'S') && (grid[rowIndex - 1][columnIndex + 1] == 'M');
-    }
-
-    private static char[][] getTwoDimArrayFromString(String input){
-        ArrayList<String> lines = input.lines().collect(Collectors.toCollection(ArrayList::new));
-
-        char[][] characterGrid = new char[lines.size()][lines.get(0).length()];
-
-        for(int rowIndex = 0; rowIndex < lines.size(); rowIndex++){
-            String line = lines.get(rowIndex);
-            for(int columnIndex = 0; columnIndex < line.length(); columnIndex++){
-                characterGrid[rowIndex][columnIndex] = line.charAt(columnIndex);
-            }
-        }
-
-        return characterGrid;
     }
 }
